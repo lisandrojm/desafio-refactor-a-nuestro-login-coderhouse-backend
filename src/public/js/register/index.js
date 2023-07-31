@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ////////////////////////////////////////////////////////// */
     /* Fetch personalizado para Passport //////////////////////// */
     /* ////////////////////////////////////////////////////////// */
-    fetch('/api/sessions/useradmin/register', {
+    fetch('/api/sessions/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

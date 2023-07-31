@@ -34,6 +34,6 @@ module.exports = (app) => {
   /* ////////////////////////////////////////////////////////// */
   /* Passport Register //////////////////////////////////////// */
   /* ////////////////////////////////////////////////////////// */
-  router.post('/register', usersController.registerUser, usersController.registerUserSuccess);
-  router.get('/failregister', usersController.failUserRegister);
+  /* router.post('/register', usersController.registerUser, usersController.registerUserSuccess); */
+  /* router.get('/failregister', usersController.failUserRegister); */
 };

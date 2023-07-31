@@ -14,21 +14,25 @@ module.exports = (app) => {
 
   /* Registrar el enrutador en la aplicación principal */
   app.use('/api/sessions', router);
+  /* ////////////////////////////////////////////////////////// */
+  /* Comentado por refactoring a src/components/auth ////////// */
+  /* ////////////////////////////////////////////////////////// */
 
   /* Definir las rutas y asignar los controladores correspondientes */
   /* ////////////////////////////////////////////////////////// */
   /* Login usuario comentado por Passport */
   /*   router.post('/login', loginController.login); */
   /* ////////////////////////////////////////////////////////// */
-  router.get('/logout', loginController.logout);
   /* ////////////////////////////////////////////////////////// */
+  /* Logout usuario comentado por Passport */
+  router.get('/logout', loginController.logout);
   /* Passport Login ////////////////////////////////////////////////// */
   /* ////////////////////////////////////////////////////////// */
-  router.post('/login', loginController.loginPassport);
+  /*   router.post('/login', loginController.loginPassport); */
   /* ////////////////////////////////////////////////////////// */
   /* Passport GitHub ////////////////////////////////////////// */
   /* ////////////////////////////////////////////////////////// */
-  router.get('/github', loginController.githubLoginPassport);
+  /*   router.get('/github', loginController.githubLoginPassport); */
   /* Callback */
-  router.get('/githubcallback', loginController.githubCallback, loginController.githubCallbackRedirect);
+  /*   router.get('/githubcallback', loginController.githubCallback, loginController.githubCallbackRedirect); */
 };

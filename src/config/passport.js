@@ -112,6 +112,7 @@ const initializePassport = () => {
           if (!user) {
             let newUser = {
               first_name: profile._json.name,
+              last_name: 'GitHub user',
               email: profile._json.email,
               password: '[]',
             };
