@@ -21,6 +21,7 @@ module.exports = (app) => {
   router.post('/register', authController.registerUser, authController.registerUserSuccess);
   router.get('/failregister', authController.failUserRegister);
   router.post('/login', authController.loginPassport);
+  router.get('/logout', authController.logout);
   router.get('/github', authController.githubLoginPassport);
   router.get('/githubcallback', authController.githubCallback, authController.githubCallbackRedirect);
 };

@@ -2,13 +2,13 @@
 /* /src/components/auth/authController/authController.js -  servicios de los usuarios. */
 /* ************************************************************************** */
 
+const authServices = require('../authServices/authServices');
 /* Importar el modulo de passport */
 const passport = require('passport');
 /* Definir la clase 'AuthController' */
 class AuthController {
   /* ////////////////////////////////////////////////////////// */
-  /* Passport ///////////////////////////////////////////////// */
-  /* ////////////////////////////////////////////////////////// */
+  /* Passport Registro///////////////////////////////////////////////// */
   registerUser = (req, res, next) => {
     passport.authenticate('register', { failureRedirect: '/failregister' })(req, res, next);
   };
@@ -20,7 +20,7 @@ class AuthController {
     res.send({ error: 'Failed Register' });
   };
   /* ////////////////////////////////////////////////////////// */
-  /* Passport Login ////////////////////////////////////////////////// */
+  /* Passport Login////////////////////////////////////////////////// */
   /* ////////////////////////////////////////////////////////// */
   loginPassport = (req, res, next) => {
     passport.authenticate('login', (err, user) => {
@@ -61,8 +61,11 @@ class AuthController {
     req.session.user = req.user;
     res.redirect('/products');
   };
+  /* ////////////////////////////////////////////////////////// */
+  /* Logout////////////////////////////////////////////////// */
+  /* ////////////////////////////////////////////////////////// */
   logout = async (req, res) => {
-    const logoutResult = await loginServices.logout(req, res);
+    const logoutResult = await authServices.logout(req, res);
     if (logoutResult.success) {
       return res.redirect('/');
     } else {

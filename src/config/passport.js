@@ -118,14 +118,12 @@ const initializePassport = () => {
             };
             let result = await User.create(newUser);
 
-            // Create a cart for the new user
             const userCart = new Cart({
               user: result._id,
               products: [],
             });
             await userCart.save();
 
-            // Assign the newly created cart's ID to the user
             result.cart = userCart._id;
             await result.save();
 
