@@ -51,6 +51,9 @@ class AuthController {
       }
     })(req, res, next);
   };
+  /* ////////////////////////////////////////////////////////// */
+  /* Passport GitHub Login //////////////////////////////////// */
+  /* ////////////////////////////////////////////////////////// */
   githubLoginPassport = (req, res, next) => {
     passport.authenticate('github', { scope: ['user_email'] })(req, res, next);
   };
