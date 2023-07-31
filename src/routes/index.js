@@ -24,9 +24,6 @@ const sessionsApi = require('../components/sessions');
 /* Importar el módulo 'usersApi' desde el directorio '../components/users' */
 const usersApi = require('../components/users');
 
-/* Importar el módulo 'loginApi' desde el directorio '../components/users' */
-const loginApi = require('../components/login');
-
 /* Importar el módulo 'rolesApi' desde el directorio '../components/users' */
 const rolesApi = require('../components/roles');
 
@@ -55,9 +52,6 @@ module.exports = (app) => {
 
   /* Llamar a la función 'usersApi' pasando la instancia de la aplicación 'app' */
   usersApi(app);
-
-  /* Llamar a la función 'loginApi' pasando la instancia de la aplicación 'app' */
-  loginApi(app);
 
   /* Llamar a la función 'rolesApi' pasando la instancia de la aplicación 'app' */
   rolesApi(app);
