@@ -77,7 +77,10 @@ adminCod3r123
 
 ## Video Testing
 
-(VIDEO)
+
+https://github.com/lisandrojm/desafio_refactor-a-nuestro-login/assets/35199683/8b963939-6efa-424d-8628-cfc8b2e9779c
+
+
 
 ## Estructura del proyecto (directorios relevantes para el desafío)
 
