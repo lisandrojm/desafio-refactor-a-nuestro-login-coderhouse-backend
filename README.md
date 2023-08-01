@@ -1,7 +1,5 @@
 # DESAFÍO ENTREGABLE - Refactor a nuestro login - Coderhouse/Backend
 
-# Refactor a nuestro login
-
 Este repositorio contiene el refactor a nuestro login con las siguientes características:
 
 - Hasheo de contraseña utilizando bcrypt.
