@@ -23,7 +23,7 @@ class HandlebarsController {
 
   getProducts = async (req, res) => {
     const { limit, page, sort, query } = req.query;
-    const sessionUser = req.session.user; // Obtener el objeto del usuario desde la sesión
+    const sessionUser = req.session.user;
 
     const data = await HandlebarsServices.getProducts(limit, page, sort, query, res, sessionUser);
     return res.render('products', data);
@@ -32,7 +32,7 @@ class HandlebarsController {
   getCartProductById = async (req, res) => {
     const { cid } = req.params;
     const cartId = cid;
-    const user = req.session.user; // Obtener el objeto del usuario desde la sesión
+    const user = req.session.user;
     const data = await HandlebarsServices.getCartProductById(cartId, res, user);
     return res.render('carts', data);
   };

@@ -1,28 +1,26 @@
 /* ************************************************************************** */
-/* /src/components/auth/authController/authController.js -  servicios de los usuarios. */
+/* /src/components/auth/authController/authController.js - Controlador  de 
+autenticación de usuarios. */
 /* ************************************************************************** */
 
 const authServices = require('../authServices/authServices');
-/* Importar el modulo de passport */
 const passport = require('passport');
-/* Definir la clase 'AuthController' */
+
 class AuthController {
-  /* ////////////////////////////////////////////////////////// */
-  /* Passport Registro///////////////////////////////////////////////// */
-  registerUser = (req, res, next) => {
+  register = (req, res, next) => {
     passport.authenticate('register', { failureRedirect: '/failregister' })(req, res, next);
   };
-  registerUserSuccess = (req, res) => {
+
+  registerSuccess = (req, res) => {
     res.send({ status: 'success', message: 'User registered' });
   };
-  failUserRegister = async (req, res) => {
+
+  failRegister = async (req, res) => {
     console.log('Failed Strategy');
     res.send({ error: 'Failed Register' });
   };
-  /* ////////////////////////////////////////////////////////// */
-  /* Passport Login////////////////////////////////////////////////// */
-  /* ////////////////////////////////////////////////////////// */
-  loginPassport = (req, res, next) => {
+
+  login = (req, res, next) => {
     passport.authenticate('login', (err, user) => {
       if (err) {
         return res.status(500).json({ success: false, error: 'Error durante el inicio de sesión' });
@@ -31,16 +29,12 @@ class AuthController {
         return res.status(401).json({ success: false, error: 'Credenciales inválidas' });
       }
 
-      // Handle the redirection and response based on user type
       if (user.admin) {
-        // If the user is an admin, redirect to /products and send userType as admin
         res.cookie('username', user.email, { maxAge: 20000, httpOnly: true, signed: true });
         req.session.user = user;
         req.session.admin = true;
-
         return res.status(200).json({ success: true, message: 'Inicio de sesión exitoso', userType: 'admin' });
       } else {
-        // If the user is a regular user, redirect to /products and send userType as user
         res.cookie('username', user.email, { maxAge: 20000, httpOnly: true, signed: true });
         req.session.user = user;
         if (req.session.hasOwnProperty('admin')) {
@@ -51,22 +45,29 @@ class AuthController {
       }
     })(req, res, next);
   };
-  /* ////////////////////////////////////////////////////////// */
-  /* Passport GitHub Login //////////////////////////////////// */
-  /* ////////////////////////////////////////////////////////// */
-  githubLoginPassport = (req, res, next) => {
+
+  logout = async (req, res) => {
+    const logoutResult = await authServices.logout(req, res);
+    if (logoutResult.success) {
+      return res.redirect('/');
+    } else {
+      return res.status(401).json(logoutResult);
+    }
+  };
+
+  githubLogin = (req, res, next) => {
     passport.authenticate('github', { scope: ['user_email'] })(req, res, next);
   };
+
   githubCallback = (req, res, next) => {
     passport.authenticate('github', { failureRedirect: '/login' })(req, res, next);
   };
+
   githubCallbackRedirect = (req, res) => {
     req.session.user = req.user;
     res.redirect('/products');
   };
-  /* ////////////////////////////////////////////////////////// */
-  /* Logout////////////////////////////////////////////////// */
-  /* ////////////////////////////////////////////////////////// */
+
   logout = async (req, res) => {
     const logoutResult = await authServices.logout(req, res);
     if (logoutResult.success) {
@@ -76,4 +77,5 @@ class AuthController {
     }
   };
 }
+
 module.exports = new AuthController();

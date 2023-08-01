@@ -2,9 +2,7 @@
 /* /src/components/roles/rolesServices/rolesServices.js - servicio de roles. */
 /* ************************************************************************** */
 
-/* Definir la clase RolesServices */
 class RolesServices {
-  /* Test de middleware ath Admin */
   getAdmin = async (req, res) => {
     try {
       return res.status(200).json({ success: true, message: 'Si estas viendo esto es porque eres Admin registrado' });
@@ -16,7 +14,7 @@ class RolesServices {
       });
     }
   };
-  /* Test de middleware ath User */
+
   getUser = async (req, res) => {
     try {
       return res.status(200).json({ success: true, message: 'Si estás viendo esto es porque eres un User registrado.' });
@@ -30,5 +28,4 @@ class RolesServices {
   };
 }
 
-/* Exportar una instancia de la clase 'RolesServices' */
 module.exports = new RolesServices();

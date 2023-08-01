@@ -1,6 +1,7 @@
 /* ************************************************************************** */
 /* /src/config/passport.js - . */
 /* ************************************************************************** */
+
 const passport = require('passport');
 const local = require('passport-local');
 const { User } = require('../models/users');
@@ -12,7 +13,7 @@ const { config } = require('../config');
 const LocalStrategy = local.Strategy;
 const initializePassport = () => {
   console.log('Passport running');
-  /*Passport Register */
+
   passport.use(
     'register',
     new LocalStrategy(
@@ -33,21 +34,20 @@ const initializePassport = () => {
             last_name,
             email,
             age,
-            /* Implementación de creación de hash del password del algoritmo de hashing de cotraseñas bcrypt */
             password: createHash(password),
           });
 
           await newUser.save();
 
-          /* Crear un carrito vinculado al ID del usuario */
           const userCart = new Cart({
             user: newUser._id,
             products: [],
           });
+
           await userCart.save();
 
-          /* Asignar el ID del carrito recién creado al usuario */
           newUser.cart = userCart._id;
+
           await newUser.save();
 
           const data = newUser;
@@ -59,7 +59,7 @@ const initializePassport = () => {
       }
     )
   );
-  /*Passport Login */
+
   passport.use(
     'login',
     new LocalStrategy(
@@ -97,6 +97,7 @@ const initializePassport = () => {
       }
     )
   );
+
   passport.use(
     'github',
     new GitHubStrategy(
@@ -141,9 +142,11 @@ const initializePassport = () => {
   passport.serializeUser((user, done) => {
     done(null, user._id);
   });
+
   passport.deserializeUser(async (id, done) => {
     let user = await User.findById(id);
     done(null, user);
   });
 };
+
 module.exports = initializePassport;

@@ -3,30 +3,21 @@
  controlador de los usuarios. */
 /* ************************************************************************** */
 
-/* Importar el modelo de usuario */
 const { User } = require('../../../models/users');
-/* Importar el modelo de carrito */
 const { Cart } = require('../../../models/carts');
-/* Importar createHash del algoritmo de hashing de contraseñas bcrypt */
 const { createHash } = require('../../../utils/bcrypt/bcrypt');
 
-/* Definir la clase 'UserServices' */
 class UsersServices {
-  /* Obtener todos los usuarios */
   getUsers = async (res) => {
     try {
-      /* Obtener todos los mensajes de la base de datos */
       const users = await User.find();
       const data = users;
-      /* Enviar una respuesta exitosa con los mensajes obtenidos */
       return res.status(200).json({ success: true, payload: data });
     } catch (error) {
-      /* Enviar una respuesta de error en caso de producirse un error al obtener los mensajes */
       return res.status(500).json({ success: false, error: 'Error al obtener los usuarios' });
     }
   };
 
-  /* Agregar un usuario y  Crear un carrito vinculado al ID del usuario  */
   addUser = async (payload, res) => {
     try {
       const { first_name, last_name, email, age, password } = payload;
@@ -34,7 +25,6 @@ class UsersServices {
       if (!first_name || !last_name || !email || !age || !password) {
         return res.status(500).json({ success: false, error: 'Faltan campos obligatorios' });
       }
-
       const existingUser = await User.findOne({ email: email });
 
       if (existingUser) {
@@ -46,31 +36,30 @@ class UsersServices {
         last_name,
         email,
         age,
-        /* Implementación de creación de hash del password del algoritmo de hashing de cotraseñas bcrypt */
         password: createHash(password),
       });
 
       await newUser.save();
 
-      /* Crear un carrito vinculado al ID del usuario */
       const userCart = new Cart({
         user: newUser._id,
         products: [],
       });
+
       await userCart.save();
 
-      /* Asignar el ID del carrito recién creado al usuario */
       newUser.cart = userCart._id;
+
       await newUser.save();
 
       const data = newUser;
+
       return res.status(201).json({ success: true, message: 'Usuario agregado correctamente', payload: data });
     } catch (error) {
       return res.status(500).json({ success: false, error: 'Error al agregar el usuario' });
     }
   };
 
-  /* Recuperar contraseña  */
   recoveryUser = async ({ email, password, res }) => {
     try {
       let user = await User.findOne({
@@ -98,6 +87,7 @@ class UsersServices {
       }
 
       const data = user;
+
       return res.status(200).json({ success: true, payload: data });
     } catch (error) {
       return res.status(500).json({ success: false, error: 'Error al obtener el usuario' });
@@ -123,6 +113,7 @@ class UsersServices {
       req.app.io.emit('updateUser', updatedUser);
 
       const data = updatedUser;
+
       return res.status(200).json({ success: true, message: 'Usuario actualizado correctamente', payload: data });
     } catch (error) {
       return res.status(500).json({ success: false, error: 'Error al actualizar el usuario' });
@@ -147,5 +138,4 @@ class UsersServices {
   };
 }
 
-/* Exportar una instancia de la clase 'UserServices' */
 module.exports = new UsersServices();
