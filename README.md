@@ -95,8 +95,6 @@ El proyecto sigue la siguiente estructura de directorios:
   - `/src/components/handlebars/handlebarsController/handlebarsController.js`: Controlador de Handlebars para gestionar la lógica de negocio.
   - `/src/components/handlebars/handlebarsServices/productsServices.js`: Servicios de Handlebars para interactuar con la capa de datos relacionados con los productos.
 
-- `/src/components/users`: Contiene los archivos relacionados con la funcionalidad de los usuarios.
-
 - `/src/config`: Contiene los archivos de configuración de la aplicación.
 
   - `/src/config/index.js`: Archivo de configuración que exporta variables de entorno y configuraciones generales.
@@ -113,7 +111,7 @@ El proyecto sigue la siguiente estructura de directorios:
 
 - `/src/routes`: Contiene los archivos de definición de rutas de la aplicación.
 
-  - `/src/routes/index.js`: Archivo de definición de rutas que exporta las rutas para los mensajes.
+  - `/src/routes/index.js`: Archivo de definición de rutas que exporta las rutas.
 
 - `/src/views/layouts/main.handlebars`: Contiene el archivo main de plantillas HTML utilizando Handlebars.
 
