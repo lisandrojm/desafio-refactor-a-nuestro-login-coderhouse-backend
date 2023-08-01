@@ -1,6 +1,6 @@
 # DESAFÍO ENTREGABLE - Refactor a nuestro login - Coderhouse/Backend
 
-# Primer login por formulario
+# Refactor a nuestro login
 
 Este repositorio contiene el refactor a nuestro login con las siguientes características:
 
