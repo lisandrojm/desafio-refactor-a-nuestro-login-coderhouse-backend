@@ -85,14 +85,6 @@ Aquí tienes la estructura del proyecto con descripciones para cada directorio:
 
 El proyecto sigue la siguiente estructura de directorios:
 
-- `/src`: Contiene el archivo principal de la aplicación (`index.js`) que inicia el servidor y configura las rutas. Es el punto de entrada de la aplicación.
-
-- `/src/components/handlebars`: Contiene los archivos relacionados con la funcionalidad de Handlebars.
-
-  - `/src/components/handlebars/index.js`: Archivo de entrada de Handlebars que exporta los componentes relacionados.
-  - `/src/components/handlebars/handlebarsController/handlebarsController.js`: Controlador de Handlebars para gestionar la lógica de negocio.
-  - `/src/components/handlebars/handlebarsServices/productsServices.js`: Servicios de Handlebars para interactuar con la capa de datos relacionados con los productos.
-
 - `/src/config`: Contiene los archivos de configuración de la aplicación.
 
   - `/src/config/index.js`: Archivo de configuración que exporta variables de entorno y configuraciones generales.
@@ -104,26 +96,6 @@ El proyecto sigue la siguiente estructura de directorios:
   - `/src/components/auth/index.js`: Archivo de entrada que exporta los componentes relacionados.
   - `/src/components/auth/authController/authController.js`: Controlador de los distintos metodos de autenticación y autorización.
   - `/src/components/auth/authServices/authServices.js`: Servicios de los métodos que implementen servicios.
-
-- `/src/public`: Contiene los archivos públicos de la aplicación, como estilos CSS, imágenes y scripts JavaScript.
-
-- `/src/routes`: Contiene los archivos de definición de rutas de la aplicación.
-
-  - `/src/routes/index.js`: Archivo de definición de rutas que exporta las rutas.
-
-- `/src/views/layouts/main.handlebars`: Contiene el archivo main de plantillas HTML utilizando Handlebars.
-
-- `/src/views/login.handlebars`: Archivo de plantilla HTML para la vista de login.
-
-- `/src/views/register.handlebars`: Archivo de plantilla HTML para la vista de registro.
-
-- `/src/views/dashboard.handlebars`: Archivo de plantilla HTML para la vista de admin.
-
-- `/src/views/profile.handlebars`: Archivo de plantilla HTML para la vista de perfil de usuario.
-
-- `/src/views/products.handlebars`: Archivo de plantilla HTML para la vista de productos.
-
-- `/src/views/carts.handlebars`: Archivo de plantilla HTML para la vista de carritos.
 
 - `/.env.example`: Archivo de ejemplo que muestra la estructura y variables de entorno requeridas para la configuración de la aplicación.
 
