@@ -67,15 +67,6 @@ class AuthController {
     req.session.user = req.user;
     res.redirect('/products');
   };
-
-  logout = async (req, res) => {
-    const logoutResult = await authServices.logout(req, res);
-    if (logoutResult.success) {
-      return res.redirect('/');
-    } else {
-      return res.status(401).json(logoutResult);
-    }
-  };
 }
 
 module.exports = new AuthController();
